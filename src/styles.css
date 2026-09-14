@@ -130,6 +130,10 @@ h1 { font-size: 28px; letter-spacing: -.04em; line-height: 1.2; margin: 0; }
 .form-grid input:focus, .form-grid select:focus { border-color: #5b7cfa; box-shadow: 0 0 0 3px rgba(91, 124, 250, .12); }
 .form-grid input.input-error { border-color: var(--color-danger); }
 .form-grid .field-error { color: var(--color-danger); font-size: 11px; font-weight: 500; }
+.password-input-wrap { position: relative; }
+.password-input-wrap input { padding-right: 42px; width: 100%; }
+.password-toggle { align-items: center; background: transparent; border: 0; color: #667387; cursor: pointer; display: flex; font-size: 17px; height: 100%; justify-content: center; padding: 0; position: absolute; right: 4px; top: 0; width: 34px; }
+.password-toggle:hover { color: #141c2b; }
 .form-success-banner { background: #edf9f5; border: 1px solid #b9e3d5; border-radius: 8px; color: #217866; font-size: 12px; line-height: 1.4; margin-bottom: 18px; padding: 11px 13px; }
 .register-page, .login-page { max-width: 900px; }
 .register-form, .login-form { background: linear-gradient(135deg, #ffffff 0%, #f7f9ff 100%); border-color: #cfd8ff; border-top: 4px solid #5b7cfa; box-shadow: 0 14px 32px rgba(91, 124, 250, .09); }

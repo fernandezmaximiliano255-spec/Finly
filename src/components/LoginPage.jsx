@@ -4,6 +4,7 @@ export function LoginPage({ onLogin, onBack }) {
   const [form, setForm] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
   const [loginError, setLoginError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -43,7 +44,7 @@ export function LoginPage({ onLogin, onBack }) {
         {loginError && <div className="form-error-banner">{loginError}</div>}
         <div className="form-grid">
           <label>Correo electrónico<input className={errors.email ? 'input-error' : ''} name="email" type="text" value={form.email} onChange={handleChange} onBlur={handleBlur} placeholder="Ej: nombre@email.com" />{errors.email && <span className="field-error">{errors.email}</span>}</label>
-          <label>Contraseña<input className={errors.password ? 'input-error' : ''} name="password" type="password" value={form.password} onChange={handleChange} onBlur={handleBlur} placeholder="Tu contraseña" />{errors.password && <span className="field-error">{errors.password}</span>}</label>
+          <label>Contraseña<div className="password-input-wrap"><input className={errors.password ? 'input-error' : ''} name="password" type={showPassword ? 'text' : 'password'} value={form.password} onChange={handleChange} onBlur={handleBlur} placeholder="Tu contraseña" /><button className="password-toggle" type="button" aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'} onClick={() => setShowPassword((visible) => !visible)}>{showPassword ? '◉' : '◌'}</button></div>{errors.password && <span className="field-error">{errors.password}</span>}</label>
         </div>
         <button className="primary-button" type="submit">Ingresar</button>
       </form>
