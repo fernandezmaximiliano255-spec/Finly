@@ -554,7 +554,10 @@ function App() {
     const { data, error } = await supabase.auth.signUp({
       email: profile.email,
       password,
-      options: { data: { first_name: profile.firstName, last_name: profile.lastName, phone: profile.phone } },
+      options: {
+        emailRedirectTo: window.location.origin,
+        data: { first_name: profile.firstName, last_name: profile.lastName, phone: profile.phone },
+      },
     });
     if (error) return { error: error.message };
 
