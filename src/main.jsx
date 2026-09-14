@@ -270,6 +270,33 @@ function syncProjectMovements(projects, transactions) {
   return [...missingMovements, ...keptTransactions];
 }
 
+function AuthLayout({ children, type }) {
+  const isRegister = type === 'register';
+  return (
+    <div className={`auth-shell auth-${type}`}>
+      <section className="auth-showcase">
+        <a className="auth-brand" href="#">finly</a>
+        <div className="auth-showcase-copy">
+          <p className="auth-kicker">{isRegister ? 'Tu próximo paso' : 'Tu espacio personal'}</p>
+          <h2>{isRegister ? 'Empezá a ordenar tus finanzas.' : 'Todo lo importante, en un solo lugar.'}</h2>
+          <p>{isRegister ? 'Creá tu cuenta y empezá a registrar proyectos, ingresos y gastos de forma simple.' : 'Volvé a tus proyectos y seguí avanzando con una visión clara de tu trabajo.'}</p>
+        </div>
+        <div className="auth-visual" aria-hidden="true">
+          {isRegister ? <>
+            <div className="auth-orbit orbit-one" /><div className="auth-orbit orbit-two" />
+            <div className="auth-step-card"><span>01</span><strong>Creá tu espacio</strong><small>Configurá tus datos personales</small></div>
+            <div className="auth-step-card offset"><span>02</span><strong>Cargá tu primer proyecto</strong><small>Y empezá a ver tus avances</small></div>
+          </> : <>
+            <div className="auth-chart-card"><div className="auth-card-top"><span>Resumen mensual</span><strong>+18.4%</strong></div><div className="auth-bars"><i /><i /><i /><i /><i /></div><div className="auth-card-foot"><span>Ingresos</span><b>$8.420</b></div></div>
+            <div className="auth-floating-card"><span className="auth-check">✓</span><div><strong>Proyecto cobrado</strong><small>Actualizado recién</small></div></div>
+          </>}
+        </div>
+      </section>
+      <div className="auth-content">{children}</div>
+    </div>
+  );
+}
+
 function App() {
   const [activeLink, setActiveLink] = useState('Resumen');
   const [projects, setProjects] = useState([]);
@@ -619,6 +646,14 @@ function App() {
   const requiresSession = !publicLinks.includes(activeLink);
   const shouldShowLogin = requiresSession && !session;
 
+  if (activeLink === 'Registro') {
+    return <AuthLayout type="register"><RegisterPage onRegister={handleRegister} onBack={() => setActiveLink('Resumen')} /></AuthLayout>;
+  }
+
+  if (activeLink === 'Iniciar sesión') {
+    return <AuthLayout type="login"><LoginPage onLogin={handleLogin} onBack={() => setActiveLink('Resumen')} /></AuthLayout>;
+  }
+
   if (!session && activeLink === 'Resumen') {
     return <WelcomePage onNavigate={setActiveLink} />;
   }
@@ -627,7 +662,7 @@ function App() {
     <div className="app-shell">
       <Sidebar activeLink={activeLink} onNavigate={setActiveLink} session={session} />
       <main className="main-content">
-        {shouldShowLogin ? <LoginPage onLogin={handleLogin} onBack={() => setActiveLink('Resumen')} /> : activeLink === 'Proyectos' ? <ProjectsPage projects={projects} onProjectsChange={handleProjectsChange} onProjectSave={handleProjectSave} onProjectDelete={handleProjectDelete} projectToEdit={projectToEdit} onEditHandled={() => setProjectToEdit(null)} /> : activeLink === 'Movimientos' ? <MovementsPage transactions={transactions} projects={projects} onTransactionsChange={handleTransactionsChange} onMovementDelete={handleMovementDelete} onPendingEdit={handlePendingEdit} onPendingDelete={handlePendingDelete} /> : activeLink === 'Clientes' ? <ClientsPage clients={clients} onClientsChange={setClients} onClientSave={handleClientSave} onClientDelete={handleClientDelete} /> : activeLink === 'Informe general' ? <GeneralReportPage projects={projects} transactions={transactions} /> : activeLink === 'Configuración' ? <SettingsPage settings={settings} onSettingsChange={setSettings} onClearData={handleClearData} /> : activeLink === 'Centro de ayuda' ? <HelpPage /> : activeLink === 'Registro' ? <RegisterPage onRegister={handleRegister} onBack={() => setActiveLink('Resumen')} /> : activeLink === 'Iniciar sesión' ? <LoginPage onLogin={handleLogin} onBack={() => setActiveLink('Resumen')} /> : <>
+        {shouldShowLogin ? <LoginPage onLogin={handleLogin} onBack={() => setActiveLink('Resumen')} /> : activeLink === 'Proyectos' ? <ProjectsPage projects={projects} onProjectsChange={handleProjectsChange} onProjectSave={handleProjectSave} onProjectDelete={handleProjectDelete} projectToEdit={projectToEdit} onEditHandled={() => setProjectToEdit(null)} /> : activeLink === 'Movimientos' ? <MovementsPage transactions={transactions} projects={projects} onTransactionsChange={handleTransactionsChange} onMovementDelete={handleMovementDelete} onPendingEdit={handlePendingEdit} onPendingDelete={handlePendingDelete} /> : activeLink === 'Clientes' ? <ClientsPage clients={clients} onClientsChange={setClients} onClientSave={handleClientSave} onClientDelete={handleClientDelete} /> : activeLink === 'Informe general' ? <GeneralReportPage projects={projects} transactions={transactions} /> : activeLink === 'Configuración' ? <SettingsPage settings={settings} onSettingsChange={setSettings} onClearData={handleClearData} /> : activeLink === 'Centro de ayuda' ? <HelpPage /> : <>
         <header className="page-header">
           <div>
             <p className="eyebrow">RESUMEN</p>

@@ -35,6 +35,24 @@ h1 { font-size: 28px; letter-spacing: -.04em; line-height: 1.2; margin: 0; }
 .profile-menu button { background: transparent; border: 0; color: var(--color-danger); cursor: pointer; font: inherit; font-size: 12px; padding: 6px 0 0; text-align: left; }
 .auth-back-button { background: transparent; border: 0; color: #666; cursor: pointer; font: inherit; font-size: 12px; margin-bottom: 28px; padding: 0; }
 .auth-back-button:hover { color: #111; }
+.auth-shell { background: #f6f8fb; color: #141c2b; display: grid; grid-template-columns: minmax(360px, .85fr) minmax(480px, 1.15fr); min-height: 100vh; }
+.auth-showcase { background: #131925; color: #fff; display: flex; flex-direction: column; min-height: 100vh; overflow: hidden; padding: 38px clamp(32px, 5vw, 76px); position: relative; }
+.auth-brand { color: #fff; display: block; font-size: 30px; font-weight: 700; letter-spacing: -.07em; position: relative; z-index: 1; }
+.auth-showcase-copy { margin: auto 0 44px; max-width: 420px; position: relative; z-index: 1; }
+.auth-kicker { color: #8c9cb2; font-size: 10px; font-weight: 700; letter-spacing: .14em; margin-bottom: 16px; text-transform: uppercase; }
+.auth-showcase-copy h2 { color: #fff; font-size: clamp(34px, 4vw, 58px); letter-spacing: -.07em; line-height: 1; margin-bottom: 20px; }
+.auth-showcase-copy > p:last-child { color: #aeb9c9; font-size: 15px; line-height: 1.7; margin: 0; max-width: 360px; }
+.auth-visual { min-height: 235px; perspective: 900px; position: relative; }
+.auth-visual::before { background: radial-gradient(circle, rgba(91, 124, 250, .45), transparent 68%); content: ''; height: 360px; left: 12%; position: absolute; top: -50px; width: 360px; }
+.auth-chart-card { background: rgba(255, 255, 255, .95); border: 1px solid rgba(255,255,255,.5); border-radius: 14px; box-shadow: 0 22px 50px rgba(0,0,0,.3); color: #141c2b; padding: 18px; position: absolute; right: 8%; top: 18px; transform: rotate(-5deg); transition: transform .3s ease; width: min(275px, 78%); z-index: 2; }
+.auth-chart-card:hover { transform: rotate(0) translateY(-8px); }
+.auth-card-top, .auth-card-foot { align-items: center; display: flex; font-size: 10px; justify-content: space-between; }.auth-card-top span { color: #667387; }.auth-card-top strong { color: #217866; }.auth-bars { align-items: end; display: flex; gap: 10px; height: 85px; margin: 18px 0; }.auth-bars i { background: #c2ded6; border-radius: 4px 4px 2px 2px; display: block; flex: 1; height: 42%; }.auth-bars i:nth-child(2) { height: 62%; }.auth-bars i:nth-child(3) { height: 48%; }.auth-bars i:nth-child(4) { background: #61d4b8; height: 80%; }.auth-bars i:nth-child(5) { height: 66%; }.auth-card-foot { border-top: 1px solid #e5e9ef; padding-top: 12px; }.auth-card-foot span { color: #667387; }.auth-card-foot b { font-size: 18px; }
+.auth-floating-card { align-items: center; background: #21334a; border: 1px solid #304867; border-radius: 10px; bottom: 22px; display: flex; gap: 10px; left: 8%; padding: 12px 14px; position: absolute; transform: rotate(4deg); transition: transform .3s ease; z-index: 3; }.auth-floating-card:hover { transform: rotate(0) translateY(-5px); }.auth-floating-card strong, .auth-step-card strong { display: block; font-size: 11px; }.auth-floating-card small, .auth-step-card small { color: #9eacbe; display: block; font-size: 9px; margin-top: 4px; }.auth-check { align-items: center; background: #61d4b8; border-radius: 50%; color: #10251f; display: flex; font-weight: 800; height: 25px; justify-content: center; width: 25px; }
+.auth-step-card { background: #21334a; border: 1px solid #304867; border-radius: 10px; left: 8%; padding: 14px 16px; position: absolute; top: 12px; transform: rotate(-5deg); transition: transform .3s ease; width: 205px; z-index: 2; }.auth-step-card:hover { transform: rotate(0) translateY(-6px); }.auth-step-card span { color: #5b7cfa; display: block; font: 11px 'DM Mono', monospace; margin-bottom: 12px; }.auth-step-card.offset { left: auto; right: 5%; top: 105px; transform: rotate(5deg); z-index: 3; }.auth-step-card.offset:hover { transform: rotate(0) translateY(-6px); }.orbit-one, .orbit-two { border: 1px solid rgba(97, 212, 184, .35); border-radius: 50%; height: 240px; position: absolute; right: 13%; top: -2px; transform: rotate(28deg); width: 240px; }.orbit-two { border-color: rgba(91, 124, 250, .4); height: 320px; right: 0; top: -35px; transform: rotate(-24deg); width: 320px; }
+.auth-content { align-self: center; margin: 0 auto; max-width: 900px; padding: 64px clamp(28px, 6vw, 100px); width: 100%; }
+.auth-content .projects-page-header { margin-bottom: 30px; }
+.auth-content .login-page, .auth-content .register-page { max-width: 900px; }
+.auth-content .login-form { max-width: 620px; }
 .welcome-page { background: #fafafa; color: #111; display: grid; grid-template-columns: minmax(190px, .75fr) minmax(360px, 1.25fr); grid-template-rows: 1fr auto; min-height: 100vh; padding: 64px 8vw 34px; }
 .welcome-brand { align-self: start; }
 .welcome-logo { font-size: 46px; font-weight: 700; letter-spacing: -.08em; }
@@ -211,6 +229,18 @@ h1 { font-size: 28px; letter-spacing: -.04em; line-height: 1.2; margin: 0; }
 }
 
 @media (max-width: 620px) {
+  .auth-shell { display: block; }
+  .auth-showcase { min-height: 390px; padding: 26px 24px 0; }
+  .auth-showcase-copy { margin: 58px 0 24px; }
+  .auth-showcase-copy h2 { font-size: 34px; }
+  .auth-showcase-copy > p:last-child { font-size: 13px; }
+  .auth-visual { min-height: 150px; }
+  .auth-chart-card { right: 4%; top: -4px; transform: rotate(-3deg) scale(.85); transform-origin: right top; }
+  .auth-floating-card { bottom: 0; left: 4%; transform: rotate(2deg) scale(.9); transform-origin: left bottom; }
+  .auth-step-card { left: 2%; transform: rotate(-3deg) scale(.82); transform-origin: left top; }
+  .auth-step-card.offset { right: 2%; transform: rotate(3deg) scale(.82); transform-origin: right top; }
+  .auth-content { padding: 42px 20px 58px; }
+  .auth-brand { font-size: 26px; }
   .app-shell { display: block; }
   .sidebar { min-height: auto; padding: 20px 16px; }
   .workspace-label { margin-bottom: 20px; }
